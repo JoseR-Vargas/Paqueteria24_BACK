@@ -12,7 +12,12 @@ import { FormModule } from './form/form.module';
 			isGlobal: true,
 			envFilePath: '.env',
 		}),
-		MongooseModule.forRoot(process.env.MONGODB_URI || 'mongodb://localhost:27017/paqueteria24_dev'),
+		MongooseModule.forRoot(process.env.MONGODB_URI || 'mongodb://localhost:27017/paqueteria24_dev', {
+			retryWrites: true,
+			w: 'majority',
+			serverSelectionTimeoutMS: 5000,
+			socketTimeoutMS: 45000,
+		}),
 		FormModule,
 	],
 	controllers: [AppController],

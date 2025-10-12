@@ -26,7 +26,7 @@ export class FormController {
 		
 		return {
 			success: true,
-			message: 'Contacto guardado exitosamente',
+			message: 'Mensaje enviado exitosamente',
 			data: result
 		};
 	}

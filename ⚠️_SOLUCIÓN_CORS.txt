@@ -1,0 +1,64 @@
+╔══════════════════════════════════════════════════════════════╗
+║                                                              ║
+║   ⚠️  EL ERROR DE CORS SE SOLUCIONA ASÍ  ⚠️                  ║
+║                                                              ║
+╚══════════════════════════════════════════════════════════════╝
+
+📋 PROBLEMA:
+   Cross-Origin Request Blocked: CORS request did not succeed
+
+💡 CAUSA:
+   El backend NO está corriendo en http://localhost:3000
+
+✅ SOLUCIÓN:
+
+   Paso 1️⃣: Abre una NUEVA terminal en VS Code
+   
+   Paso 2️⃣: Copia y pega estos comandos:
+   
+      cd /home/dev/Desktop/Apps/Paqueteria24_BACK/paqueteria24
+      npm run start:dev
+   
+   Paso 3️⃣: Espera a ver este mensaje:
+   
+      ✅ Paquetería24 Backend está corriendo en puerto 3000
+   
+   Paso 4️⃣: NO CIERRES esta terminal
+   
+   Paso 5️⃣: Vuelve a probar el formulario
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎯 COMANDOS RÁPIDOS:
+
+   # Iniciar Backend:
+   cd /home/dev/Desktop/Apps/Paqueteria24_BACK/paqueteria24 && npm run start:dev
+
+   # Verificar que funciona (en otra terminal):
+   curl http://localhost:3000
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📺 Deberías ver esto en la terminal:
+
+   ✅ Paquetería24 Backend está corriendo en puerto 3000
+   🌍 Entorno: development
+   🔗 CORS habilitado
+   📍 Acceso: http://localhost:3000
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🚀 DESPUÉS:
+
+   1. Frontend: http://localhost:8080/index.html
+   2. Llenar formulario
+   3. Enviar
+   4. ✅ Se guarda en MongoDB Atlas
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+❓ ¿DUDAS?
+
+   Lee: COMO_INICIAR_BACKEND.md
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
