@@ -1,0 +1,24 @@
+# Render Build & Deploy Configuration
+# https://render.com/docs/yaml-spec
+
+services:
+  - type: web
+    name: paqueteria24-backend
+    env: node
+    region: oregon
+    plan: free
+    branch: master
+    buildCommand: npm install && npm run build
+    startCommand: npm run start:prod
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGODB_URI
+        sync: false
+      - key: ALLOWED_ORIGINS
+        value: https://paqueteria24.netlify.app
+      - key: DB_NAME
+        value: paqueteria24_prod
+    healthCheckPath: /

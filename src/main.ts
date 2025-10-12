@@ -10,8 +10,21 @@ async function bootstrap() {
 		const app = await NestFactory.create(AppModule);
 
 		// Configuración de CORS
+		const allowedOrigins = process.env.ALLOWED_ORIGINS 
+			? process.env.ALLOWED_ORIGINS.split(',')
+			: ['http://localhost:8080', 'https://paqueteria24.netlify.app'];
+		
 		app.enableCors({
-			origin: true, // Permitir todos los orígenes en desarrollo
+			origin: (origin, callback) => {
+				// Permitir requests sin origin (como Postman, apps móviles)
+				if (!origin) return callback(null, true);
+				
+				if (allowedOrigins.includes(origin) || process.env.NODE_ENV === 'development') {
+					callback(null, true);
+				} else {
+					callback(new Error('Not allowed by CORS'));
+				}
+			},
 			methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
 			allowedHeaders: ['Content-Type', 'Authorization'],
 			credentials: true,
