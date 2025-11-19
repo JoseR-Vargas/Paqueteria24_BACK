@@ -11,18 +11,25 @@ import {
 	HttpCode
 } from '@nestjs/common';
 import { FormService } from './form.service';
+import { FormGateway } from './form.gateway';
 import { CreateFormDto } from './dto/create-form.dto';
 import { UpdateFormDto } from './dto/update-form.dto';
 
 @Controller('form')
 export class FormController {
-	constructor(private readonly formService: FormService) {}
+	constructor(
+		private readonly formService: FormService,
+		private readonly formGateway: FormGateway
+	) {}
 
 	@Post()
 	@HttpCode(HttpStatus.CREATED)
 	async create(@Body(ValidationPipe) createFormDto: CreateFormDto) {
 		console.log('📝 Nuevo contacto recibido:', createFormDto);
 		const result = await this.formService.create(createFormDto);
+		
+		// Emitir evento WebSocket cuando se crea un nuevo formulario
+		this.formGateway.emitNewForm(result);
 		
 		return {
 			success: true,
@@ -79,6 +86,9 @@ export class FormController {
 	@Delete(':id')
 	async remove(@Param('id') id: string) {
 		const result = await this.formService.remove(id);
+		
+		// Emitir evento WebSocket cuando se elimina un formulario
+		this.formGateway.emitDeletedForm(id);
 		
 		return {
 			success: true,

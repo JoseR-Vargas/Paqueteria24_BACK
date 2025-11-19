@@ -1,5 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
+import { IoAdapter } from '@nestjs/platform-socket.io';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
@@ -8,6 +9,9 @@ async function bootstrap() {
 		console.log(`📦 MongoDB URI configurado: ${process.env.MONGODB_URI ? '✅ Sí' : '❌ No'}`);
 		
 		const app = await NestFactory.create(AppModule);
+		
+		// Configurar adaptador de WebSocket (Socket.io)
+		app.useWebSocketAdapter(new IoAdapter(app));
 
 		// Configuración de CORS
 		const allowedOrigins = process.env.ALLOWED_ORIGINS 
