@@ -12,7 +12,7 @@ import { Logger } from '@nestjs/common';
 	cors: {
 		origin: process.env.ALLOWED_ORIGINS
 			? process.env.ALLOWED_ORIGINS.split(',')
-			: ['http://localhost:8080', 'https://paqueteria24.netlify.app'],
+			: ['http://localhost:8080', 'https://paqueteria24.com'],
 		credentials: true,
 	},
 	namespace: '/notifications',

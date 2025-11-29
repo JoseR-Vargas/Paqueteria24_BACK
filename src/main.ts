@@ -16,7 +16,7 @@ async function bootstrap() {
 		// Configuración de CORS
 		const allowedOrigins = process.env.ALLOWED_ORIGINS 
 			? process.env.ALLOWED_ORIGINS.split(',')
-			: ['http://localhost:8080', 'https://paqueteria24.netlify.app'];
+			: ['http://localhost:8080', 'https://paqueteria24.com'];
 		
 		app.enableCors({
 			origin: (origin, callback) => {
