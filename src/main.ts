@@ -15,8 +15,10 @@ async function bootstrap() {
 
 		// Configuración de CORS
 		const allowedOrigins = process.env.ALLOWED_ORIGINS 
-			? process.env.ALLOWED_ORIGINS.split(',')
-			: ['http://localhost:8080', 'https://paqueteria24.com'];
+			? process.env.ALLOWED_ORIGINS.split(',').map(o => o.trim())
+			: ['http://localhost:8080', 'https://paqueteria24.com', 'https://www.paqueteria24.com'];
+		
+		console.log('🌍 Orígenes CORS permitidos:', allowedOrigins);
 		
 		app.enableCors({
 			origin: (origin, callback) => {
@@ -24,8 +26,10 @@ async function bootstrap() {
 				if (!origin) return callback(null, true);
 				
 				if (allowedOrigins.includes(origin) || process.env.NODE_ENV === 'development') {
+					console.log('✅ CORS permitido para:', origin);
 					callback(null, true);
 				} else {
+					console.warn('❌ CORS bloqueado para:', origin);
 					callback(new Error('Not allowed by CORS'));
 				}
 			},

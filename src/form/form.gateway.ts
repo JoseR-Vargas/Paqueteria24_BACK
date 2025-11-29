@@ -11,8 +11,8 @@ import { Logger } from '@nestjs/common';
 @WebSocketGateway({
 	cors: {
 		origin: process.env.ALLOWED_ORIGINS
-			? process.env.ALLOWED_ORIGINS.split(',')
-			: ['http://localhost:8080', 'https://paqueteria24.com'],
+			? process.env.ALLOWED_ORIGINS.split(',').map(o => o.trim())
+			: ['http://localhost:8080', 'https://paqueteria24.com', 'https://www.paqueteria24.com'],
 		credentials: true,
 	},
 	namespace: '/notifications',
